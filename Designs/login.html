@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Yummy Recipes</title>
+        <link rel="stylesheet" href="../styles/styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <!--Main-->
+        <main>
+            <div class="jumbotron text-center">
+                <h1>Yummy Recipes App</h1>
+                <p>thousands of recipes and their reviews!</p> 
+            </div>
+            <div id="main" class="container clear-top">
+                <form action="">
+                    <legend>SIGN IN</legend>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" type="text" name="username" id="username" placeholder="USERNAME" required="required">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input class="form-control" type="password" name="password" id="password" placeholder="PASSWORD" required="required">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input class="btn btn-success btn-md" type="submit" name="submit" value="LOGIN">
+                    </div>
+                </form>
+                <br>
+                <div>
+                <span class="badge">SIGN UP</span>
+                <a href="#myModalReg" class="text-center" data-toggle="modal" data-target="#myModalReg">REGISTER</a>
+                </div>
+                <br>
+                <div id="myModalReg" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    &times;
+                                </button>
+                                <h4 class="modal-title">YUMMY RECIPES</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="#">
+                                    <legend>SIGN UP</legend>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                        <input type="text" name="username" placeholder="USERNAME" class="form-control" id="username" required="required">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input type="text" name="fullname" placeholder="FULLNAME" class="form-control" id="username" required="required">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input type="email" name="email" placeholder="EMAIL" class="form-control" id="email" required="required">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input type="password" name="password" placeholder="PASSWORD" class="form-control" id="password" required="required">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input type="password" name="confirmpassword" placeholder="CONFIRM PASSWORD" class="form-control" id="confrimpassword" required="required">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <input class="btn btn-success btn-md" type="submit" name="submit" value="CREATE ACCOUNT">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!--Main End-->
+        <!--Footer-->
+        <footer>
+            <div class="footer-top"> 
+                <div class="container">
+                    <div class="row text-center">
+                        <a href="https://github.com/code-sleuth"><i class="fa fa-github fa-2x"></i>GitHub</a>
+                    </div>
+                    <div class="row text-center">
+                        <p>Yummy Recipes&trade; </p>
+                    </div>
+                </div> 
+            </div>  
+        </footer>
+        <!--Footer-->
+        <div class="copyright">
+            <div class="container">
+                <div class="row text-center">
+                    <p>Copyright © 2017 All rights reserved. Ibrahim Mbaziira</p>
+                </div>
+            </div>
+        </div>   
+    </body>
+</html>
