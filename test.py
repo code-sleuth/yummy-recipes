@@ -1,5 +1,5 @@
 import unittest
-class Test(unittest.TestCase)
+class Test(unittest.TestCase):
     def setup(self):
         print("sometext")
         
