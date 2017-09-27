@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 
+# create instance of flask
+# change default templates folder to Designs folder
 app = Flask(__name__, template_folder="Designs")
 
 
