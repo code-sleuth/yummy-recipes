@@ -4,15 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Yummy Recipes</title>
+        <title>Yummy Recipes - Dashboard</title>
         <link rel="stylesheet" href="../static/css/styles.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <!-- bootstrap wysihtml5 - text editor -->
-        <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+       <script src="../static/js/add_category.js"></script>
   
     </head>
     <body>
@@ -31,7 +30,7 @@
                 
                 <div id="navbarCollapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="/">Home</a></li>
+                        <li><a href="/home">Home</a></li>
                         <li class="active"><a href="/dashboard">User Dashboard</a></li>
                     </ul>
                     <form class="navbar-form navbar-left">
@@ -43,7 +42,7 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/login">Logout</a></li>
+                        <li><a href="/">Logout</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/dashboard">Ibrahim Mbaziira</a></li>
@@ -71,14 +70,17 @@
                             <h4 class="modal-title">YUMMY RECIPES: Add Category</h4>
                         </div>
                         <div class="modal-body">
-                            <form action="#">
+                            <form action="/add_category" method="POST">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
-                                    <input type="text" name="category" placeholder="CATEGORY" class="form-control" id="category" required="required">
+                                    <input type="text" name="category" placeholder="CATEGORY" class="form-control" id="category" value="{{request.form.category}}" required="required">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <input class="btn btn-success btn-md" type="submit" name="submit" value="CREATE CATEGORY">
+                                    <input class="btn btn-success btn-md" type="submit" name="submit" id="addcategory" value="CREATE CATEGORY">
+                                </div>
+                                <div class="form-group">
+                                    <p class="text-center">{{msg}}</p>
                                 </div>
                             </form>
                         </div>
@@ -95,20 +97,24 @@
                             <h4 class="modal-title">YUMMY RECIPES: Edit Category</h4>
                         </div>
                         <div class="modal-body">
-                            <form action="#">
+                            <form action="/edit_category" method="POST">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>                                        
-                                    <select class="form-control" name="category" required="required">
-                                            <option value="">SELECT CATEGORY TO EDIT</option>
-                                            <option value="">SPICE</option>
-                                            <option value="">ICE</option>
+                                    <select class="form-control" name="optcategory"  required="required">
+                                        <option value="">SELECT CATEGORY TO EDIT</option>
+                                        {% for item in category_list %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
-                                    <input type="text" name="category" placeholder="CATEGORY" class="form-control" id="category" required="required">
+                                    <input type="text" name="category" placeholder="CATEGORY" class="form-control" id="category" value="{{request.form.category}}" required="required">
                                 </div>
                                 <br>
+                                <div class="form-group">
+                                    <p class="text-center">{{msg}}</p>
+                                </div>
                                 <div class="form-group">
                                     <input class="btn btn-info btn-md" type="submit" name="updatecategory" value="UPDATE CATEGORY">
                                     <input class="btn btn-danger btn-md" type="submit" name="deletecategory" value="DELETE CATEGORY">                                    
@@ -140,15 +146,15 @@
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                    <input type="text" name="recipename" placeholder="RECIPE NAME" class="form-control" id="recipename" required="required">
+                                    <input type="text" name="recipename" placeholder="RECIPE NAME" class="form-control" id="recipename" value="{{request.form.recipename}}" required="required">
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                    <textarea type="text" name="description" placeholder="RECIPE DESCRIPTION" class="form-control" id="description" required="required"></textarea>
+                                    <textarea type="text" name="description" placeholder="RECIPE DESCRIPTION" class="form-control" id="description" value="{{request.form.description}}" required="required"></textarea>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-glass"></i></span>
-                                    <textarea type="text" name="ingredients" placeholder="RECIPE INGREDIENTS" class="form-control" id="ingredients" required="required"></textarea>
+                                    <textarea type="text" name="ingredients" placeholder="RECIPE INGREDIENTS" class="form-control" id="ingredients" value="{{request.form.ingredients}}" required="required"></textarea>
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -188,15 +194,15 @@
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                        <input type="text" name="recipename" placeholder="RECIPE NAME" class="form-control" id="recipename" required="required">
+                                        <input type="text" name="recipename" placeholder="RECIPE NAME" class="form-control" id="recipename" value="{{request.form.recipename}}" required="required">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                        <textarea type="text" name="description" placeholder="RECIPE DESCRIPTION" class="form-control" id="description" required="required"></textarea>
+                                        <textarea type="text" name="description" placeholder="RECIPE DESCRIPTION" class="form-control" id="description" value="{{request.form.description}}" required="required"></textarea>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-glass"></i></span>
-                                        <textarea type="text" name="ingredients" placeholder="RECIPE INGREDIENTS" class="form-control" id="ingredients" required="required"></textarea>
+                                        <textarea type="text" name="ingredients" placeholder="RECIPE INGREDIENTS" class="form-control" id="ingredients" value="{{request.form.ingredients}}" required="required"></textarea>
                                     </div>
                                     <br>
                                     <div class="form-group">
@@ -221,31 +227,31 @@
                                 <h4 class="modal-title">YUMMY RECIPES</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="#">
+                                <form action="/update_user" method="POST">
                                     <legend>EDIT USER DETAILS</legend>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
-                                        <input type="text" name="username" placeholder="USERNAME" class="form-control" id="username" required="required">
+                                        <input type="text" name="username" placeholder="USERNAME" class="form-control" id="username" value="{{ request.form.username }}" required="required">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input type="text" name="fullname" placeholder="FULLNAME" class="form-control" id="username" required="required">
+                                        <input type="text" name="fullname" placeholder="FULLNAME" class="form-control" id="username" value="{{ request.form.fullname }}" required="required">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                        <input type="email" name="email" placeholder="EMAIL" class="form-control" id="email" required="required">
+                                        <input type="email" name="email" placeholder="EMAIL" class="form-control" id="email" value="{{ request.form.email }}" required="required">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input type="password" name="password" placeholder="PASSWORD" class="form-control" id="password" required="required">
+                                        <input type="password" name="password" placeholder="PASSWORD" class="form-control" id="password" value="{{ request.form.password }}" required="required">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input type="password" name="confirmpassword" placeholder="CONFIRM PASSWORD" class="form-control" id="confrimpassword" required="required">
+                                        <input type="password" name="confirmpassword" placeholder="CONFIRM PASSWORD" class="form-control" id="confrimpassword" value="{{ request.form.password }}" required="required">
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <input class="btn btn-info btn-md" type="submit" name="submit" value="UPDATE ACCOUNT INFO">
+                                        <input class="btn btn-info btn-md" type="submit" id="updateuser" value="UPDATE ACCOUNT INFO">
                                     </div>
                                 </form>
                             </div>
