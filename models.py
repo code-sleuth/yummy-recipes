@@ -1,4 +1,6 @@
 # Defined classes User, Category and Recipe
+
+
 class User:
     def __init__(self, username="", fullname="", email="", password=""):
         self._username = username
@@ -42,10 +44,11 @@ class User:
         self._fullname = new_fullname
         self._email = new_email
         self._password = new_password
+        self._users_list = self.get_user_credentials()
 
         for index1, item in enumerate(self._users):
             for index2, item2 in enumerate(item):
-                if self._users[index1][index2] == self._username:
+                if self._users[index1][index2] == self._users_list[0][0]:
                     self._users[index1][1] = self._fullname
                     self._users[index1][2] = self._email
                     self._users[index1][3] = self._password
@@ -62,8 +65,9 @@ class User:
                     return "User deleted successfully"
                 return "Failed to delete user"
 
-    def get_users_list(self):
-        return self._users
+    def get_users_list(self, lit):
+        lit = self._users
+        return lit
 
     def get_user_credentials(self):
         for ind1, item in enumerate(self._users):
@@ -80,6 +84,13 @@ class User:
 
     def get_user_name(self):
         return str(self._username)
+
+    def set_users(self, lists):
+        self._users = lists
+        return self._users
+
+    def get_users(self):
+        return self._users
 
     # this is important when testing login, edits, deletes
     def increment_users_list(self, username, new_fullname, new_email, new_password):
@@ -109,9 +120,10 @@ class Category:
     def edit_category(self, new_name, old_name):
         self._old_name = old_name
         self._name = new_name
-        if self._old_name in self._categories:
-            self._categories = [self._name for self._old_name in self._categories]
-            return "Category updated"
+        for i, val in enumerate(self._categories):
+            if val == self._old_name:
+                self._categories[i] = self._name
+                return "Category updated"
         return "category doesn't exist"
 
     def delete_category(self, category):
@@ -128,6 +140,10 @@ class Category:
         return "category does not exist"
 
     def get_all_categories(self):
+        return self._categories
+
+    def set_categories(self, lists):
+        self._categories = lists
         return self._categories
 
     # this is important for testing edits, deletes
@@ -162,16 +178,15 @@ class Recipe:
             return "Recipe added"
         return "recipe already exists"
 
-    def edit_recipe(self, name, category, details, ingredients):
+    def edit_recipe(self, old_name, name, category, details, ingredients):
         self._recipe = name
         self._category = category
         self._details = details
         self._ingredients = ingredients
-        old_recipe_name = name
 
         for index1, item in enumerate(self._recipes):
             for index2, item2 in enumerate(item):
-                if self._recipes[index1][index2] == old_recipe_name:
+                if self._recipes[index1][index2] == old_name:
                     self._recipes[index1][0] = self._recipe
                     self._recipes[index1][1] = self._category
                     self._recipes[index1][2] = self._details
@@ -188,6 +203,25 @@ class Recipe:
                     self._recipes.pop(index1)
                     return "recipe deleted successfully"
                 return "failed to delete recipe"
+
+    def set_recipes(self, lists):
+        self._recipes = lists
+        return self._recipes
+
+    def get_all_recipes(self):
+        return self._recipes
+
+    def select_one_recipe(self, recipename):
+
+        for index1, item in enumerate(self._recipes):
+            for index2, item2 in enumerate(item):
+                if self._recipes[index1][index2] == recipename:
+                    self._recipes[index1][0] = self._recipe
+                    self._recipes[index1][1] = self._category
+                    self._recipes[index1][2] = self._details
+                    self._recipes[index1][3] = self._ingredients
+                    self._recipe_list = [self._recipe, self._category, self._details, self._ingredients]
+                    return self._recipe_list
 
     # this is important when testing  edits, deletes
     def increment_recipe_list(self, name, category, details, ingredients):

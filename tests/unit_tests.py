@@ -98,11 +98,11 @@ class MinimalTestRecipe(unittest.TestCase):
 
     def test_edit_recipe(self):
         self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil")
-        self.assertEqual(self._recipe.edit_recipe("Fries", "Potat", "Smashed All", "Olive oil"), "recipe updated")
+        self.assertEqual(self._recipe.edit_recipe("Fries", "Potat", "Smashed All", "Olive oil", "l"), "recipe updated")
 
     def test_edit_recipe_failed(self):
         self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil")
-        self.assertEqual(self._recipe.edit_recipe("Fry", "Potato", "Smashed All", "Olive oil"), "Failed recipe update")
+        self.assertEqual(self._recipe.edit_recipe("Fry", "Potato", "Smashed All", "Olive", ""), "Failed recipe update")
 
     def test_delete_recipe(self):
         self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil")
