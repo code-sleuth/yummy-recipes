@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/code-sleuth/yummy-recipes.svg?branch=dev)](https://travis-ci.org/code-sleuth/yummy-recipes)
 [![Coverage Status](https://coveralls.io/repos/github/code-sleuth/yummy-recipes/badge.svg?branch=dev)](https://coveralls.io/github/code-sleuth/yummy-recipes?branch=dev)
-[![Code Climate](https://codeclimate.com/github/code-sleuth/yummy-recipes/badges/gpa.svg)]
-(https://codeclimate.com/github/code-sleuth/yummy-recipes)
+![Code Climate](https://codeclimate.com/github/code-sleuth/yummy-recipes/badges/gpa.svg)
+
 # Yummy Recipes
 ## Description
 #### The innovative yummy recipes app is an application that allows users to create, save and share meeting the needs of keeping track of awesome food recipes
