@@ -11,8 +11,6 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-       <script src="../static/js/add_category.js"></script>
-  
     </head>
     <body>
         <!--Main-->
@@ -44,9 +42,6 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/">Logout</a></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/dashboard">Ibrahim Mbaziira</a></li>
-                    </ul>
                 </div>
             </nav>
             <!--user settings nav-->
@@ -56,7 +51,7 @@
                     <a class="navbar-brand" href="#">DASHBOARD</a>
                     </div>
                     <ul class="nav navbar-nav">
-                    <li><a href="#">Recipes</a></li>
+                    <li><a href="/dashboard">Recipes</a></li>
                     <li><a href="#myModalUpdateUser" data-toggle="modal" data-target="#myModalUpdateUser" >User Details</a></li>
                     </ul>
                 </div>
@@ -73,7 +68,8 @@
                             <form action="/add_category" method="POST">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
-                                    <input type="text" name="category" placeholder="CATEGORY" class="form-control" id="category" value="{{request.form.category}}" required="required">
+                                    <input type="text" name="category" placeholder="CATEGORY" class="form-control" id="category"
+                                           required="required">
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -100,7 +96,7 @@
                             <form action="/edit_category" method="POST">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>                                        
-                                    <select class="form-control" name="optcategory"  required="required">
+                                    <select class="form-control" name="select_item"  required="required">
                                         <option value="">SELECT CATEGORY TO EDIT</option>
                                         {% for item in category_list %}
                                         <option value="{{ item }}">{{ item }}</option>
@@ -109,7 +105,8 @@
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
-                                    <input type="text" name="category" placeholder="CATEGORY" class="form-control" id="category" value="{{request.form.category}}" required="required">
+                                    <input type="text" name="optcategory" placeholder="CATEGORY" class="form-control" id="optcategory"
+                                           required="required">
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -117,7 +114,6 @@
                                 </div>
                                 <div class="form-group">
                                     <input class="btn btn-info btn-md" type="submit" name="updatecategory" value="UPDATE CATEGORY">
-                                    <input class="btn btn-danger btn-md" type="submit" name="deletecategory" value="DELETE CATEGORY">                                    
                                 </div>
                             </form>
                         </div>
@@ -125,6 +121,39 @@
                 </div>
             </div>
             <!--myModalEditCategory end-->
+
+            <!--myModalDeleteCategory end-->
+            <div id="myModalDeleteCategory" class="modal-dialog modal-lg" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">YUMMY RECIPES: Delete Category</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/delete_category" method="POST">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
+                                    <select class="form-control" name="item"  required="required">
+                                        <option value="">SELECT CATEGORY TO DELETE</option>
+                                        {% for item in category_list %}
+                                        <option value="{{ item }}" >{{ item }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <p class="text-center">{{msg}}</p>
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-danger btn-md" type="submit" name="deletecategory" value="DELETE CATEGORY">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--myModalDeleteCategory end-->
 
 
             <!--myModalAddRecipe-->
@@ -135,26 +164,27 @@
                             <h4 class="modal-title">YUMMY RECIPES: Add Recipe</h4>
                         </div>
                         <div class="modal-body">
-                            <form action="#">
+                            <form action="/add_recipe" method="POST">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>                                        
                                     <select class="form-control" name="category" required="required">
-                                            <option value="">SELECT CATEGORY</option>
-                                            <option value="">SPICE</option>
-                                            <option value="">ICE</option>
+                                        <option value="">SELECT CATEGORY TO ATTACH</option>
+                                        {% for item in category_list %}
+                                            <option value="{{ item }}" >{{ item }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                    <input type="text" name="recipename" placeholder="RECIPE NAME" class="form-control" id="recipename" value="{{request.form.recipename}}" required="required">
+                                    <input type="text" name="recipename" placeholder="RECIPE NAME" class="form-control" id="recipename" required="required">
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                    <textarea type="text" name="description" placeholder="RECIPE DESCRIPTION" class="form-control" id="description" value="{{request.form.description}}" required="required"></textarea>
+                                    <textarea type="text" name="description" placeholder="RECIPE DESCRIPTION" class="form-control" id="description" required="required"></textarea>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-glass"></i></span>
-                                    <textarea type="text" name="ingredients" placeholder="RECIPE INGREDIENTS" class="form-control" id="ingredients" value="{{request.form.ingredients}}" required="required"></textarea>
+                                    <textarea type="text" name="ingredients" placeholder="RECIPE INGREDIENTS" class="form-control" id="ingredients"  required="required"></textarea>
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -167,6 +197,36 @@
             </div>
             <!--myModalAddRecipe end-->
 
+
+            <!--myModalDeleteRecipe-->
+            <div id="myModalDeleteRecipe" class="modal-dialog modal-lg" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">YUMMY RECIPES: Delete Recipe</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/delete_recipe" method="POST">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        <select class="form-control" name="recipe" required="required">
+                                            <option value="">SELECT RECIPE TO DELETE</option>
+                                            {% for i in rec%}
+                                            <option value="{{i[0]}}">{{i[0]}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <input class="btn btn-danger btn-md" type="submit" name="deleterecipe" value="DELETE RECIPE">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--myModalDeleteRecipe end-->
+
             <!--myModalEditRecipe-->
             <div id="myModalEditRecipe" class="modal-dialog modal-lg" role="dialog">
                     <div class="modal-dialog">
@@ -175,39 +235,42 @@
                                 <h4 class="modal-title">YUMMY RECIPES: Edit Recipe</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="#">
+                                <form action="/edit_recipe" method="POST">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>                                        
-                                        <select class="form-control" name="recipe" required="required">
-                                                <option value="">SELECT RECIPE TO EDIT</option>
-                                                <option value="">REC SPICE</option>
-                                                <option value="">REC ICE</option>
+                                        <select class="form-control" name="edit_recipe" required="required">
+                                            <option value="">SELECT RECIPE TO EDIT</option>
+                                            {% for i in rec%}
+                                            <option value="{{i[0]}}">{{i[0]}}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>                                        
-                                        <select class="form-control" name="category" required="required">
-                                                <option value="">SELECT CATEGORY</option>
-                                                <option value="">SPICE</option>
-                                                <option value="">ICE</option>
+                                        <select class="form-control" name="new_category" required="required">
+                                            <option value="">SELECT CATEGORY</option>
+                                            {% for i in category_list %}
+                                            <option value="{{i}}">{{i}}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                        <input type="text" name="recipename" placeholder="RECIPE NAME" class="form-control" id="recipename" value="{{request.form.recipename}}" required="required">
+                                        <input type="text" name="recipe_name" placeholder="RECIPE NAME" class="form-control" id="recipe_name"
+                                               required="required">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-                                        <textarea type="text" name="description" placeholder="RECIPE DESCRIPTION" class="form-control" id="description" value="{{request.form.description}}" required="required"></textarea>
+                                        <textarea type="text" name="new_description" placeholder="RECIPE DESCRIPTION" class="form-control" id="new_description"  required="required"></textarea>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-glass"></i></span>
-                                        <textarea type="text" name="ingredients" placeholder="RECIPE INGREDIENTS" class="form-control" id="ingredients" value="{{request.form.ingredients}}" required="required"></textarea>
+                                        <textarea type="text" name="new_ingredients" placeholder="RECIPE INGREDIENTS" class="form-control"
+                                                  id="new_ingredients"  required="required"></textarea>
                                     </div>
                                     <br>
                                     <div class="form-group">
                                         <input class="btn btn-info btn-md" type="submit" name="updaterecipe" value="UPDATE RECIPE">
-                                        <input class="btn btn-danger btn-md" type="submit" name="deleterecipe" value="DELETE RECIPE">                                        
                                     </div>
                                 </form>
                             </div>
@@ -258,6 +321,34 @@
                         </div>
                     </div>
                 </div>
+
+            <!--table to display recipes-->
+
+            <div class="container">
+              <h2 class="text-center">RECIPES TABLE</h2>
+              <p class="text-center">Yummy Recipes</p>
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>RECIPE NAME</th>
+                    <th>CATEGORY NAME</th>
+                    <th>DETAILS</th>
+                    <th>INGREDIENTS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for i in rec %}
+                  <tr>
+                    <td>{{i[0]}}</td>
+                    <td>{{i[1]}}</td>
+                    <td>{{i[2]}}</td>
+                    <td>{{i[3]}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+
         </div>
         </main>
     <!--Footer-->
