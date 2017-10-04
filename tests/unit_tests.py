@@ -89,27 +89,29 @@ class MinimalTestRecipe(unittest.TestCase):
         self.assertIsInstance(self._recipe, Recipe, "Failed to create recipe object")
 
     def test_add_recipe(self):
-        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil")
-        self.assertEqual(self._recipe.add_recipe("Carrot spice", "spices", "minced", "sun dry"), "Recipe added")
+        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil", "username")
+        self.assertEqual(self._recipe.add_recipe("Carrot spice", "spices", "minced", "sun dry", "username"),
+                         "Recipe added")
 
     def test_add_recipe_failed(self):
-        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil")
-        self.assertEqual(self._recipe.add_recipe("Fries", "Potatos", "Smashed fries", "Oil"), "recipe already exists")
+        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil", "username")
+        self.assertEqual(self._recipe.add_recipe("Fries", "Potatos", "Smashed fries", "Oil", "username"),
+                         "recipe already exists")
 
     def test_edit_recipe(self):
-        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil")
+        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil", "username")
         self.assertEqual(self._recipe.edit_recipe("Fries", "Potat", "Smashed All", "Olive oil", "l"), "recipe updated")
 
     def test_edit_recipe_failed(self):
-        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil")
+        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil", "username")
         self.assertEqual(self._recipe.edit_recipe("Fry", "Potato", "Smashed All", "Olive", ""), "Failed recipe update")
 
     def test_delete_recipe(self):
-        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil")
+        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil", "username")
         self.assertEqual(self._recipe.delete_recipe("Fries"), "recipe deleted successfully")
 
     def test_delete_recipe_failed(self):
-        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil")
+        self._recipe.increment_recipe_list("Fries", "Potatos", "Smashed fries", "Oil", "username")
         self.assertEqual(self._recipe.delete_recipe("none"), "failed to delete recipe", msg="Recipe doesn't exist")
 
 
