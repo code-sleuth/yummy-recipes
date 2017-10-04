@@ -20,19 +20,19 @@
                 <p>thousands of recipes and their reviews!</p> 
             </div>
             <div id="main" class="container clear-top">
-                <form action="" method="POST">
+                <form action="/" method="POST">
                     <legend>SIGN IN</legend>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input class="form-control" type="text" name="username" id="username" placeholder="USERNAME" value="{{request.form.username}}" required="required">
+                        <input class="form-control" type="text" name="username" id="username" placeholder="USERNAME"  required="required">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input class="form-control" type="password" name="password" id="password" placeholder="PASSWORD" value="{{request.form.password}}" required="required">
+                        <input class="form-control" type="password" name="password" id="password" placeholder="PASSWORD"  required="required">
                     </div>
                     <br>
                     <div class="form-group">
-                        <p class="text-center">{{error}}</p>
+                        <p class="text-center">{{ms}}</p>
                     </div>
                     <div class="form-group">
                         <input class="btn btn-success btn-md" type="submit" name="submit" id="" value="LOGIN">

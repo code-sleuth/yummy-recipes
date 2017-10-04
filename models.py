@@ -19,7 +19,7 @@ class User:
             for index2, item2 in enumerate(item):
                 if self._users[index1][index2] == self._username and self._users[index1][3] == self._password:
                     return "User credentials ok"
-                return "Wrong username or password"
+        return "Wrong username or password"
 
     def add_new_user(self, username, fullname, email, password):
         self._username = username
@@ -65,9 +65,16 @@ class User:
                     return "User deleted successfully"
                 return "Failed to delete user"
 
-    def get_users_list(self, lit):
-        lit = self._users
-        return lit
+    def get_logged_in_user(self, username):
+        for i, users_index_1 in enumerate(self._users):
+            for x, users_index_2 in enumerate(users_index_1):
+                if self._users[i][x] == username:
+                    self._username = self._users[i][0]
+                    self._fullname = self._users[i][1]
+                    self._email = self._users[i][2]
+                    self._password = self._users[i][3]
+                    self._users_list = [self._username, self._fullname, self._email, self._password]
+                    return self._users_list
 
     def get_user_credentials(self):
         for ind1, item in enumerate(self._users):
@@ -155,23 +162,25 @@ class Category:
 
 class Recipe:
 
-    def __init__(self, name="", category="", details="", ingredients=""):
+    def __init__(self, name="", category="", details="", ingredients="", username=""):
         self._recipe = name
         self._category = category
         self._details = details
         self._ingredients = ingredients
+        self._username = username
         self._recipe_list = []
         self._recipes = []
 
-    def add_recipe(self, name, category, details, ingredients):
+    def add_recipe(self, name, category, details, ingredients, username):
         self._recipe = name
         self._category = category
         self._details = details
         self._ingredients = ingredients
+        self._username = username
 
         # get existing recipe names
         get_recipe_name = [name[0] for name in self._recipes]
-        self._recipe_list = [self._recipe, self._category, self._details, self._ingredients]
+        self._recipe_list = [self._recipe, self._category, self._details, self._ingredients, self._username]
 
         if self._recipe not in get_recipe_name:
             self._recipes.append(self._recipe_list)
@@ -224,11 +233,12 @@ class Recipe:
                     return self._recipe_list
 
     # this is important when testing  edits, deletes
-    def increment_recipe_list(self, name, category, details, ingredients):
+    def increment_recipe_list(self, name, category, details, ingredients, username):
         self._recipe = name
         self._category = category
         self._details = details
         self._ingredients = ingredients
-        self._recipe_list = [self._recipe, self._category, self._details, self._ingredients]
+        self._username = username
+        self._recipe_list = [self._recipe, self._category, self._details, self._ingredients, self._username]
         self._recipes.append(self._recipe_list)
         return self._recipes

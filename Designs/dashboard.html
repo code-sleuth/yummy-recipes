@@ -14,6 +14,12 @@
     </head>
     <body>
         <!--Main-->
+        {% if not det %}
+        <script type="text/javascript">
+            window.location.href = "/"
+        </script>
+        {% endif %}
+
         <main>
             <nav class="navbar navbar-default">
                 <div class="navbar-header">
@@ -42,6 +48,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/">Logout</a></li>
                     </ul>
+                    {% if det %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/dashboard">{{ det[1] }}</a></li>
+                    </ul>
+                    {% endif %}
                 </div>
             </nav>
             <!--user settings nav-->
@@ -292,29 +303,32 @@
                             <div class="modal-body">
                                 <form action="/update_user" method="POST">
                                     <legend>EDIT USER DETAILS</legend>
+                                    {% if det %}
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
-                                        <input type="text" name="username" placeholder="USERNAME" class="form-control" id="username" value="{{ request.form.username }}" required="required">
+                                        <input type="text" name="username" placeholder="USERNAME" class="form-control" id="username" value="{{ det[0] }}" required="required" disabled>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input type="text" name="fullname" placeholder="FULLNAME" class="form-control" id="username" value="{{ request.form.fullname }}" required="required">
+                                        <input type="text" name="fullname" placeholder="FULLNAME" class="form-control" id="username" value="{{ det[1] }}" required="required" disabled>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                        <input type="email" name="email" placeholder="EMAIL" class="form-control" id="email" value="{{ request.form.email }}" required="required">
+                                        <input type="email" name="email" placeholder="EMAIL" class="form-control" id="email" value="{{ det[2] }}" required="required" disabled>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input type="password" name="password" placeholder="PASSWORD" class="form-control" id="password" value="{{ request.form.password }}" required="required">
+                                        <input type="password" name="password" placeholder="PASSWORD" class="form-control" id="password" value="{{ det[3] }}" required="required" disabled>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input type="password" name="confirmpassword" placeholder="CONFIRM PASSWORD" class="form-control" id="confrimpassword" value="{{ request.form.password }}" required="required">
+                                        <input type="password" name="confirmpassword" placeholder="CONFIRM PASSWORD" class="form-control" id="confrimpassword" value="{{ det[3] }}" required="required"
+                                               disabled>
                                     </div>
+                                    {% endif %}
                                     <br>
                                     <div class="form-group">
-                                        <input class="btn btn-info btn-md" type="submit" id="updateuser" value="UPDATE ACCOUNT INFO">
+                                        <input class="btn btn-info btn-md" type="submit" id="updateuser" value="UPDATE ACCOUNT INFO" disabled>
                                     </div>
                                 </form>
                             </div>
@@ -334,16 +348,20 @@
                     <th>CATEGORY NAME</th>
                     <th>DETAILS</th>
                     <th>INGREDIENTS</th>
+                    <th>ADDED BY</th>
                   </tr>
                 </thead>
                 <tbody>
                 {% for i in rec %}
+                {% if det and i[4] == det[0] %}
                   <tr>
                     <td>{{i[0]}}</td>
                     <td>{{i[1]}}</td>
                     <td>{{i[2]}}</td>
                     <td>{{i[3]}}</td>
+                    <td>{{i[4]}}</td>
                   </tr>
+                {% endif %}
                 {% endfor %}
                 </tbody>
               </table>
