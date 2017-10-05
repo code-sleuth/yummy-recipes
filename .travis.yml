@@ -5,7 +5,8 @@ install:
   - pip install -r requirements.txt
   - pip install coveralls
   - pip install unittest2
+  - pip install coverage
 script:
-  - nosetests --with-coverage
+  - nosetests --with-coverage --cover-erase --cover-package=tests
 after_success:
   - coveralls

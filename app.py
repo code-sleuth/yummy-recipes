@@ -40,6 +40,13 @@ def signup():
             return render_template("login.html", category_info=CATEGORY, info=USERS,
                                    rec=RECIPES, det=db_logged_in_user, ms=ms)
 
+        for i, user_list in enumerate(USERS):
+            print(user_list[i])
+            if user_list[i] == _username or user_list[2] == _email:
+                ms = "Failed to add User: Username or Email address already used"
+                return render_template("login.html", category_info=CATEGORY, info=USERS,
+                                   rec=RECIPES, det=db_logged_in_user, ms=ms)
+
         if len(_password) < 4:
             ms = "Failed to add User: Password Should be at least 4 characters long"
             return render_template("login.html", category_info=CATEGORY, info=USERS,
@@ -96,14 +103,18 @@ def add_category():
         msg = ''
         _category = request.form["category"]
         _category_obj = Category()
+        global db_category_list
+        global db_category_name
+        global CATEGORY
+
+        if _category in CATEGORY:
+            cms = 'Category already exists. use different name'
+            return render_template('dashboard.html', cms=cms, category_list=CATEGORY, info=USERS, rec=RECIPES,
+                                   det=db_logged_in_user)
 
         if _category:
             if _category_obj.add_category(_category):
-                global db_category_list
-                global db_category_name
-                global CATEGORY
                 db_category_list = _category_obj.get_all_categories()
-
                 if not CATEGORY:
                     CATEGORY = db_category_list
                 else:
@@ -134,6 +145,11 @@ def edit_category():
         global db_category_name
         global CATEGORY
         _category_obj.set_categories(CATEGORY)
+
+        if _new_name in CATEGORY:
+            cme = 'Category already exists. use different name'
+            return render_template('dashboard.html', cme=cme, category_list=CATEGORY, info=USERS, rec=RECIPES,
+                                   det=db_logged_in_user)
 
         if _old_name and _new_name:
             if _category_obj.edit_category(_new_name, _old_name):
