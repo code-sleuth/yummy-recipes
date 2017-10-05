@@ -5,7 +5,8 @@ install:
   - pip install -r requirements.txt
   - pip install coveralls
   - pip install unittest2
+  - pip install coverage
 script:
-  - nosetests --with-coverage
+  - sh -c 'cd ./tests/ && coverage run -m --source=app unittest discover test && coverage report'
 after_success:
   - coveralls

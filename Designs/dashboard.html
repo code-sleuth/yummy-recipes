@@ -87,7 +87,7 @@
                                     <input class="btn btn-success btn-md" type="submit" name="submit" id="addcategory" value="CREATE CATEGORY">
                                 </div>
                                 <div class="form-group">
-                                    <p class="text-center">{{msg}}</p>
+                                    <p class="text-center">{{cms}}</p>
                                 </div>
                             </form>
                         </div>
@@ -121,10 +121,10 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <p class="text-center">{{msg}}</p>
+                                    <input class="btn btn-info btn-md" type="submit" name="updatecategory" value="UPDATE CATEGORY">
                                 </div>
                                 <div class="form-group">
-                                    <input class="btn btn-info btn-md" type="submit" name="updatecategory" value="UPDATE CATEGORY">
+                                    <p class="text-center">{{cme}}</p>
                                 </div>
                             </form>
                         </div>
@@ -152,9 +152,6 @@
                                     </select>
                                 </div>
                                 <br>
-                                <div class="form-group">
-                                    <p class="text-center">{{msg}}</p>
-                                </div>
                                 <div class="form-group">
                                     <input class="btn btn-danger btn-md" type="submit" name="deletecategory" value="DELETE CATEGORY">
                                 </div>
@@ -223,7 +220,9 @@
                                         <select class="form-control" name="recipe" required="required">
                                             <option value="">SELECT RECIPE TO DELETE</option>
                                             {% for i in rec%}
+                                            {% if det and i[4] == det[0] %}
                                             <option value="{{i[0]}}">{{i[0]}}</option>
+                                            {% endif %}
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -252,7 +251,9 @@
                                         <select class="form-control" name="edit_recipe" required="required">
                                             <option value="">SELECT RECIPE TO EDIT</option>
                                             {% for i in rec%}
+                                            {% if det and i[4] == det[0] %}
                                             <option value="{{i[0]}}">{{i[0]}}</option>
+                                            {% endif %}
                                             {% endfor %}
                                         </select>
                                     </div>
