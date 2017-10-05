@@ -7,6 +7,6 @@ install:
   - pip install unittest2
   - pip install coverage
 script:
-  - sh -c 'cd ./tests/ && coverage run -m --source=app unittest discover test && coverage report'
+  - nosetests --with-coverage --cover-erase --cover-package=tests
 after_success:
   - coveralls
