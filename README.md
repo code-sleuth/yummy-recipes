@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/code-sleuth/yummy-recipes.svg?branch=dev&cacheBuster=1)](https://travis-c.org/code-sleuth/yummy-recipes)
 [![Coverage Status](https://coveralls.io/repos/github/code-sleuth/yummy-recipes/badge.svg?branch=dev&cacheBuster=1)](https://coveralls.io/github/code-sleuth/yummy-recipes?branch=dev)
-[![Code Climate](https://codeclimate.com/github/code-sleuth/yummy-recipes/badges/gpa.svg?branch=dev&cacheBuster=1)](https://codeclimate.com/github/code-sleuth/yummy-recipes)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2e555b952f095ebf38bf/maintainability)](https://codeclimate.com/github/code-sleuth/yummy-recipes/maintainability)
 
 # Yummy Recipes
 ## Description
