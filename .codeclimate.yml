@@ -1,3 +1,11 @@
 engines:
   duplication:
-    enabled: false
+    enabled: true
+    checks:
+      Similar code:
+        enabled: false
+    config:
+      languages:
+        python:
+          python_version: 3
+          mass_threshold: 20
