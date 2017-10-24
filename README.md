@@ -52,13 +52,6 @@
     ```
     https://morning-escarpment-76742.herokuapp.com
     ```
- ## More on testing, account for quick access
-
-* Username: admin
-* Password: pass
-
- * #### Team
-    * ****decepticonSociety****
     
  * ##### Author
     * **Ibrahim Mbaziira**
