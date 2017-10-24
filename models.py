@@ -15,9 +15,9 @@ class User:
         self._username = username
         self._password = password
 
-        for index1, item in enumerate(self._users):
-            for index2, item2 in enumerate(item):
-                if self._users[index1][index2] == self._username and self._users[index1][3] == self._password:
+        for l, user_list_1 in enumerate(self._users):
+            for m, user_list_2 in enumerate(user_list_1):
+                if self._users[l][m] == self._username and self._users[l][3] == self._password:
                     return "User credentials ok"
         return "Wrong username or password"
 
@@ -46,22 +46,22 @@ class User:
         self._password = new_password
         self._users_list = self.get_user_credentials()
 
-        for index1, item in enumerate(self._users):
-            for index2, item2 in enumerate(item):
-                if self._users[index1][index2] == self._users_list[0][0]:
-                    self._users[index1][1] = self._fullname
-                    self._users[index1][2] = self._email
-                    self._users[index1][3] = self._password
+        for o, u_list in enumerate(self._users):
+            for p, u_list_in in enumerate(u_list):
+                if self._users[o][p] == self._users_list[0][0]:
+                    self._users[o][1] = self._fullname
+                    self._users[o][2] = self._email
+                    self._users[o][3] = self._password
                     return "Updated user details"
                 return "Failed to update user"
 
-    def delete_user(self, username):
-        self._username = username
+    def delete_user(self, user_name):
+        self._username = user_name
 
-        for index1, item in enumerate(self._users):
-            for index2, item2 in enumerate(item):
-                if self._users[index1][index2] == self._username:
-                    self._users.pop(index1)
+        for r, delete_list in enumerate(self._users):
+            for s, delete_list2 in enumerate(delete_list):
+                if self._users[r][s] == self._username:
+                    self._users.pop(r)
                     return "User deleted successfully"
                 return "Failed to delete user"
 
@@ -193,23 +193,23 @@ class Recipe:
         self._details = details
         self._ingredients = ingredients
 
-        for index1, item in enumerate(self._recipes):
-            for index2, item2 in enumerate(item):
-                if self._recipes[index1][index2] == old_name:
-                    self._recipes[index1][0] = self._recipe
-                    self._recipes[index1][1] = self._category
-                    self._recipes[index1][2] = self._details
-                    self._recipes[index1][3] = self._ingredients
+        for a, edit_recipe_list_1 in enumerate(self._recipes):
+            for b, edit_recipe_list_2 in enumerate(edit_recipe_list_1):
+                if self._recipes[a][b] == old_name:
+                    self._recipes[a][0] = self._recipe
+                    self._recipes[a][1] = self._category
+                    self._recipes[a][2] = self._details
+                    self._recipes[a][3] = self._ingredients
                     return "recipe updated"
                 return "Failed recipe update"
 
-    def delete_recipe(self, name):
-        self._recipe = name
+    def delete_recipe(self, recipe_name):
+        self._recipe = recipe_name
 
-        for index1, item in enumerate(self._recipes):
-            for index2, item2 in enumerate(item):
-                if self._recipes[index1][index2] == self._recipe:
-                    self._recipes.pop(index1)
+        for d, del_rec_list_1 in enumerate(self._recipes):
+            for f, del_rec_list_2 in enumerate(del_rec_list_1):
+                if self._recipes[d][f] == self._recipe:
+                    self._recipes.pop(d)
                     return "recipe deleted successfully"
                 return "failed to delete recipe"
 
@@ -222,13 +222,13 @@ class Recipe:
 
     def select_one_recipe(self, recipename):
 
-        for index1, item in enumerate(self._recipes):
-            for index2, item2 in enumerate(item):
-                if self._recipes[index1][index2] == recipename:
-                    self._recipes[index1][0] = self._recipe
-                    self._recipes[index1][1] = self._category
-                    self._recipes[index1][2] = self._details
-                    self._recipes[index1][3] = self._ingredients
+        for i, recipe_list_1 in enumerate(self._recipes):
+            for x, recipe_list_2 in enumerate(recipe_list_1):
+                if self._recipes[i][x] == recipename:
+                    self._recipes[i][0] = self._recipe
+                    self._recipes[i][1] = self._category
+                    self._recipes[i][2] = self._details
+                    self._recipes[i][3] = self._ingredients
                     self._recipe_list = [self._recipe, self._category, self._details, self._ingredients]
                     return self._recipe_list
 

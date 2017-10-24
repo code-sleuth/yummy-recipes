@@ -240,7 +240,7 @@ def delete_recipe():
             if _obj_rec.delete_recipe(_name):
                 db = _obj_rec.get_all_recipes()
                 RECIPES = db
-                return render_template('dashboard.html', msg=msg, category_list=CATEGORY, info=USERS, name=db_user_name,
+                return render_template('dashboard.html', msg=msg, category_list=CATEGORY, info=USERS,
                                        rec=RECIPES, det=db_logged_in_user)
             else:
                 return render_template("dashboard.html", msg=msg, category_list=CATEGORY, info=USERS, rec=RECIPES,
